@@ -78,6 +78,16 @@ section.data p.def {
     margin-top: 5px;
     display: inline-block;
 }
+
+.meaning{
+    background: #3b4ceb;
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-top: 5px;
+    display: inline-block;
+}
 .audio {
     margin-top: 20px;
 }
@@ -93,4 +103,11 @@ td,th{
 th{
     font-weight: bold;
     text-transform: uppercase;
+}
+#input1{
+   border: 1px solid #ddd;
+   display: flex;
+   align-items: center;
+    
+    
 }
