@@ -83,7 +83,7 @@ searchBtn.addEventListener('click', function(e){
     // clear data 
     audioBox.innerHTML = '';
     notFound.innerText = '';
-    defBox.innerText = '';
+    //defBox.innerText = '';
 
     // Get input data
     let word = input.value;
