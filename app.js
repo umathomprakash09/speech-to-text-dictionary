@@ -6,8 +6,40 @@ let defBox = document.querySelector('.def');
 let audioBox = document.querySelector('.audio');
 let loading = document.querySelector('.loading');
 let wordBox = document.querySelector('.words_and_meaning');
+//let wordBox = document.querySelector('.word_and_meaning_together');
 //const tableBody = document.querySelector('#tableData');
 let i=0;
+
+let oldLength = 0;
+var searchValue = input.value;
+$(function () {
+    setTimeout(myFunction, 3000);
+});
+function myFunction(){
+    var currentValue = document.getElementById("input1").value;
+    if ((currentValue) && currentValue != searchValue && currentValue != '')
+    {
+        searchValue = $('#input1').val();
+        if(i!=0)
+        {
+            strTosearch=searchValue.slice(searchValue.lastIndexOf(" "),searchValue.length);
+        }
+        else
+        {
+            strTosearch = searchValue;
+        }
+        input.value = strTosearch;
+        getData(strTosearch);
+        
+        i++;
+    }
+    else {
+        setTimeout(myFunction, 3000);
+    }
+    
+}
+
+setInterval(function() { myFunction()} , 5000);
 
 
 
@@ -29,11 +61,11 @@ let transcript = Array.from(e.results)
 .map(result => result.transcript)
 .join('')
 
-document.getElementById("input").value = transcript;
+document.getElementById("input1").value = transcript;
 
 //document.getElementById("input").value = "";
 console.log(transcript);
-//transcript="";
+
 
 
 });
@@ -41,9 +73,7 @@ console.log(transcript);
 
 recognition.start();
 
-//recognition.addEventListener('end',recognition.start);
-
-
+recognition.addEventListener('end',recognition.start);
 
 
 
@@ -81,6 +111,7 @@ searchBtn.addEventListener('click', function(e){
 }) 
 
 
+
 async function getData(word) {
     //alert("getData function is called")
     loading.style.display = 'block';
@@ -110,7 +141,7 @@ async function getData(word) {
         //recognition.stop();
         return;
     }
-
+    //document.getElementById("input").value = "";
     // Result found 
     loading.style.display = 'none';
     let defination = data[0].shortdef[0];
@@ -119,15 +150,27 @@ async function getData(word) {
     let words = document.createElement('span');
     let meanging = document.createElement('span');
     let br = document.createElement('br');
+    let wordMeaningBox = document.createElement('div');
 
     words.classList.add('suggested');
-    meanging.classList.add('suggested');
+    meanging.classList.add('meaning');
     words.innerHTML = word;
     meanging.innerHTML = defination;
-    wordBox.appendChild(words);
-    wordBox.appendChild(meanging);
-    wordBox.appendChild(br);
+    //wordBox.insertBefore(words)
     
+    wordMeaningBox.appendChild(words);
+    wordMeaningBox.appendChild(meanging);
+    wordMeaningBox.appendChild(br);
+
+    wordBox.insertBefore(wordMeaningBox,wordBox.firstChild);
+    
+    
+
+    
+
+ 
+
+
 
 
     // Sound 
